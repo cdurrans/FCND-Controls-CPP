@@ -14,7 +14,17 @@ Izz = 0.0046
 kappa = 0.016
 minMotorThrust = .1
 maxMotorThrust = 4.5
-#Twiddle
+####################Twiddle
+# In order to use  my implementation of Twiddle you can put multiple parameters seperated by a space,
+# but you must also change the numberOfParamOptions to equal the count of parameters you've included.
+# The default settings are:
+# nextParam = no
+# paramPtr = 0
+# twiddleAdjustmentAmt = 1
+# twiddleStage initialize
+# twiddleOptionsAdjustmentAmt = # # # for each number of params in paramToTwiddleOptions
+# One final thing if any of the twiddleAdjustmentAmts get to less than 0.15 then the process will stop.
+##
 paramToTwiddle = kpPosXY
 numberOfParamOptions = 1
 paramToTwiddleOptions = kpPosXY
