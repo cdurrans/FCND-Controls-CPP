@@ -2,6 +2,13 @@
 
 # Flying Car Nanodegree Control Project
 
+[//]: # (Image References)
+
+[xyz]: (./animations/xyz.png) "Dyanmics of Drone"
+[img1]: (./animations/cascadedcontroller.png) "Controller"
+[img12]: (./animations/matrixrollPitch.png) "Matrix Roll Pitch"
+[img13]: (./animations/momentcommand.png) "Moment Command"
+
 For this project in Udacity's Flying Car Nanodegree we learned about the physics of a quadcopter to control it. We learned to model the vehicle and provide instructions for the quadcopter to follow a desired trajectory. I implemented a 5-piece cascaded controller that I tuned both manually and with gradient ascent a.k.a. the twiddle algorithm.
 
 To control the quadcopter, I needed to model its ability to travel in the x, y, and z planes as well as its roll, pitch and yaw as indicated with p, q, and r below. Then with the model predict where the quadcopter would travel and implement controllers to make it happen. 
