@@ -11,6 +11,8 @@
 
 For this project in Udacity's Flying Car Nanodegree we learned about the physics of a quadcopter to control it. We learned to model the vehicle and provide instructions for the quadcopter to follow a desired trajectory. I implemented a 5-piece cascaded controller that I tuned both manually and with gradient ascent a.k.a. the twiddle algorithm.
 
+In order to tune the parameters you'll need to play with the parameters in the QuadControlParams.txt found in the config folder. You can replace the numbers mid simulation if you are fast enough to save it. To use the twiddle algorithm change the twiddleStage from noTwiddle to initialize. See further instructions included in the same file.
+
 To control the quadcopter, I needed to model its ability to travel in the x, y, and z planes as well as its roll, pitch and yaw as indicated with p, q, and r below. Then with the model predict where the quadcopter would travel and implement controllers to make it happen. 
 
 ![xyz](https://github.com/cdurrans/FCND-Controls-CPP/blob/master/animations/xyz.PNG)
@@ -109,6 +111,7 @@ I hope this makes sense, but using these equations you can take the desired coll
     cmd.desiredThrustsN[3] = f4; // rear right
 ```
 
-This fulfills the writeup for my project, but please look forward to me updating it in greater detail in a blog post.
+This fulfills the writeup for my project, but please look forward to me updating it in greater detail in a blog post. Something I learned too was that if you used twiddle you might be waiting a long while. On the other hand, it is very useful because you can fine tune the parameters even further if you set the update amounts to be low at first. Of course, if you are far from the optimal solution it will increase the adjustment amounts to larger numbers. Another insight I had while tuning is that if you tune too much for one scenario it can cause other scenarios to no longer pass. I had a particularly hard time with scenario 4 and 5. Sometimes the optimal solution for scenario 5 will cause scenario 2 or 3 to no longer pass. Also, if you let twiddle run on scenario 4 for too long your PID controller for altitude will change drammatically and it may affect the other scenarios adversely.
+
 
 
