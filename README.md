@@ -1,5 +1,4 @@
 
-[Drone_dynamics]: ./animations/xyz.png "Drone Dynamics"
 
 # Flying Car Nanodegree Control Project
 
@@ -7,7 +6,7 @@ For this project in Udacity's Flying Car Nanodegree we learned about the physics
 
 To control the quadcopter, I needed to model its ability to travel in the x, y, and z planes as well as its roll, pitch and yaw as indicated with p, q, and r below. Then with the model predict where the quadcopter would travel and implement controllers to make it happen. 
 
-![png](Drone_dynamics)
+![png](./animations/xyz.png)
 
 What follows is a brief walkthrough of what I did to pass this project. To follow along with the simulator, the starter code is located here: https://github.com/udacity/FCND-Controls-CPP.
 
@@ -16,9 +15,9 @@ What follows is a brief walkthrough of what I did to pass this project. To follo
 Cascaded controllers work together to follow the path sent to them from the planner. The controllers are layered and the inner most layers are fed information from the outer layers. In our case, the planner tells the controllers that we are to go to x, y, z position in the world frame. The altitude and lateral controllers then take that information and some state information to tell the roll-pitch and yaw controllers what acceleration is needed to get there, which makes the roll-pitch and yaw controllers calculate how the quadcopter needs to be oriented to acheive that acceleration. Finally, with the predicted change in orientation the body rate controllers predict how much torque is needed to bring the quadcopter to align itself. The over-all force and the moments (torques) are fed to the quadcopter for it to move.
 
 The following is a picture of the controllers and how they feed into one another.
-<p align="center">
-<img src="animations/cascaded controller.png" width="800"/>
-</p>
+
+![png](./animations/cascadedcontroller.png)
+
 
 When implementing controllers, it is helpful to tune the parameters for the faster most inner leveled controllers, so that when the faster controllers have told the quadcopter to move by given amounts it has arrived to the desired position by the time the outer levels are calculating the next steps.
 
@@ -33,9 +32,8 @@ b&#775;<sup>x</sup><sub>c</sub> = k<sub>p</sub>(b<sup>x</sup><sub>c</sub> - b<su
 b&#775;<sup>y</sup><sub>c</sub> = k<sub>p</sub>(b<sup>y</sup><sub>c</sub> - b<sup>y</sup><sub>a</sub>)
 
 where b<sup>x</sup><sub>a</sub> = R<sub>13</sub> and b<sup>y</sup><sub>a</sub> = R<sub>23</sub> from the rotation matrix R. The given values can be converted into the angular velocities into the body frame by the next matrix multiplication.
-<p align="center">
-<img src="animations/matrix rollPitch.png" width="300"/>
-</p>
+
+![png](./animations/matrixrollPitch.png)
 
 Also do not forget to convert the force from Newtons to acceleration with the mass like this `commanded thrust / mass`. See the code in the RollPitchControl function.
 
@@ -61,9 +59,9 @@ Similarly the yaw controller is a simple controller with the error being restric
 
 Now putting together, the four propellers, they each exert force, and increasing the force of each one in different patterns gives the quadcopter its ability to roll, pitch, and yaw. Therefore, we control them individually, but the following equations allow us to calculate our x, y, and z moments.
 
-<p align="center">
-<img src="animations/momentcommand.png" width="300"/>
-</p>
+![png](./animations/momentcommand.png)
+
+
 The force from the two motors on the left (F<sub>1</sub> and F<sub>4</sub>) counter the forces from the two on the right (F<sub>2</sub> and F<sub>3</sub>) to give the Tau<sub>x</sub> or roll.
 <p></p>
 In the equation `l` is the arm length from the center to the propeller which we multiply by `1/sqrt(2)`, and 𝜔 is the torque of the propeller. The 𝜏<sub>1</sub>=−𝑘<sub>𝑚</sub>𝜔<sup>2</sup><sub>1</sub> , 𝜏<sub>2</sub>=−𝑘<sub>𝑚</sub>𝜔<sup>2</sup><sub>2</sub> , 𝜏<sub>3</sub>=−𝑘<sub>𝑚</sub>𝜔<sup>2</sup><sub>3</sub>,
