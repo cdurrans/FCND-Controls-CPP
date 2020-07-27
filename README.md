@@ -1,12 +1,14 @@
 
+[Drone_dynamics]: ./animations/xyz.png "Drone Dynamics"
+
 # Flying Car Nanodegree Control Project
 
 For this project in Udacity's Flying Car Nanodegree we learned about the physics of a quadcopter to control it. We learned to model the vehicle and provide instructions for the quadcopter to follow a desired trajectory. I implemented a 5-piece cascaded controller that I tuned both manually and with gradient ascent a.k.a. the twiddle algorithm.
 
 To control the quadcopter, I needed to model its ability to travel in the x, y, and z planes as well as its roll, pitch and yaw as indicated with p, q, and r below. Then with the model predict where the quadcopter would travel and implement controllers to make it happen. 
-<p align="center">
-<img src="./animations/xyz.png" width="500"/>
-</p>
+
+![png](Drone_dynamics)
+
 What follows is a brief walkthrough of what I did to pass this project. To follow along with the simulator, the starter code is located here: https://github.com/udacity/FCND-Controls-CPP.
 
 ## Controllers
