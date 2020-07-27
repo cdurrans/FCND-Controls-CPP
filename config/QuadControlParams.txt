@@ -1,0 +1,46 @@
+############################## SLR SIMPLECONFIG ############################
+# this is a comment. [X] is a namespace. [X:Y] initializes X from Y
+# Namespace and parameter names are not case-sensitive
+# X=Y sets X to Y. Y may be a string, float, or list of 3 floats
+############################################################################
+[QuadControlParams] 
+UseIdealEstimator = 1
+# Physical properties
+Mass = 0.486
+L = 0.17
+Ixx = 0.0023
+Iyy = 0.0023
+Izz = 0.0046
+kappa = 0.016
+minMotorThrust = .1
+maxMotorThrust = 4.5
+#Twiddle
+paramToTwiddle = kpPosXY
+numberOfParamOptions = 1
+paramToTwiddleOptions = kpPosXY
+twiddleOptionsAdjustmentAmt = 0.1456366628
+nextParam = no
+paramPtr = 0.
+twiddleAdjustmentAmt = 0.1456366628
+#twiddle stages include: stageOne, stageTwo, initialize, noTwiddle
+twiddleStage = noTwiddle
+twiddleBestError = 575222.5625
+twiddleCurrentError = 0.0
+# Position control gains
+kpPosXY = 27.45492554
+kpPosZ = 20.44100189
+KiPosZ = 40.44099808
+# Velocity control gains
+kpVelXY = 12.55899906
+kpVelZ = 8.558999062
+# Angle control gains
+kpBank = 10.09171581
+kpYaw = 1.789999962
+# Angle rate gains
+kpPQR = 95, 95, 6
+# limits
+maxAscentRate = 5
+maxDescentRate = 2
+maxSpeedXY = 5
+maxHorizAccel = 12
+maxTiltAngle = .7
