@@ -13,7 +13,7 @@ For this project in Udacity's Flying Car Nanodegree we learned about the physics
 
 To control the quadcopter, I needed to model its ability to travel in the x, y, and z planes as well as its roll, pitch and yaw as indicated with p, q, and r below. Then with the model predict where the quadcopter would travel and implement controllers to make it happen. 
 
-![png](./animations/xyz.png)
+![xyz](https://github.com/cdurrans/FCND-Controls-CPP/blob/master/animations/xyz.PNG)
 
 What follows is a brief walkthrough of what I did to pass this project. To follow along with the simulator, the starter code is located here: https://github.com/udacity/FCND-Controls-CPP.
 
@@ -23,8 +23,7 @@ Cascaded controllers work together to follow the path sent to them from the plan
 
 The following is a picture of the controllers and how they feed into one another.
 
-![png](./animations/cascadedcontroller.png)
-
+![Cascaded Controller](https://github.com/cdurrans/FCND-Controls-CPP/blob/master/animations/cascadedcontroller.PNG)
 
 When implementing controllers, it is helpful to tune the parameters for the faster most inner leveled controllers, so that when the faster controllers have told the quadcopter to move by given amounts it has arrived to the desired position by the time the outer levels are calculating the next steps.
 
@@ -40,7 +39,7 @@ b&#775;<sup>y</sup><sub>c</sub> = k<sub>p</sub>(b<sup>y</sup><sub>c</sub> - b<su
 
 where b<sup>x</sup><sub>a</sub> = R<sub>13</sub> and b<sup>y</sup><sub>a</sub> = R<sub>23</sub> from the rotation matrix R. The given values can be converted into the angular velocities into the body frame by the next matrix multiplication.
 
-![png](./animations/matrixrollPitch.png)
+![matrixrollPitch](https://github.com/cdurrans/FCND-Controls-CPP/blob/master/animations/matrixrollPitch.PNG)
 
 Also do not forget to convert the force from Newtons to acceleration with the mass like this `commanded thrust / mass`. See the code in the RollPitchControl function.
 
@@ -66,8 +65,7 @@ Similarly the yaw controller is a simple controller with the error being restric
 
 Now putting together, the four propellers, they each exert force, and increasing the force of each one in different patterns gives the quadcopter its ability to roll, pitch, and yaw. Therefore, we control them individually, but the following equations allow us to calculate our x, y, and z moments.
 
-![png](./animations/momentcommand.png)
-
+![momentcommand](https://github.com/cdurrans/FCND-Controls-CPP/blob/master/animations/momentcommand.PNG)
 
 The force from the two motors on the left (F<sub>1</sub> and F<sub>4</sub>) counter the forces from the two on the right (F<sub>2</sub> and F<sub>3</sub>) to give the Tau<sub>x</sub> or roll.
 <p></p>
